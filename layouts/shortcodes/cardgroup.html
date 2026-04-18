@@ -1,0 +1,22 @@
+{{/*
+  CARDGROUP SHORTCODE
+  Wraps multiple {{< card >}} shortcodes in a horizontal flex row.
+
+  Usage:
+    {{< cardgroup >}}
+      {{< card "02003" name="Agnès Baker" >}}
+      {{< card "02004" name="Skids O'Toole" >}}
+    {{< /cardgroup >}}
+
+  Optional `caption` parameter adds a shared caption below the group:
+    {{< cardgroup caption="The two investigators used in this playthrough" >}}
+*/}}
+
+{{ $caption := .Get "caption" }}
+
+<div class="cardgroup">
+  {{ .Inner }}
+  {{ with $caption }}
+  <p class="cardgroup-caption">{{ . }}</p>
+  {{ end }}
+</div>

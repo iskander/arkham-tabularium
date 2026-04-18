@@ -1,0 +1,65 @@
+[latest_dispatches]
+other = "Latest dispatches"
+
+[reading_time]
+other = "{{ . }} min read"
+
+[tags_label]
+other = "Tags"
+
+[written_by]
+other = "Written by"
+
+[license_line]
+other = "Content under"
+
+[copyright_line]
+other = "Arkham Horror: The Card Game is © Fantasy Flight Games"
+
+[difficulty_label]
+other = "Difficulty"
+
+[difficulty_easy]
+other = "Easy"
+
+[difficulty_standard]
+other = "Standard"
+
+[difficulty_hard]
+other = "Hard"
+
+[difficulty_expert]
+other = "Expert"
+
+[standalone_yes]
+other = "Yes"
+
+[standalone_no]
+other = "No"
+
+[also_available_in]
+other = "Also available in"
+
+[rss_feed]
+other = "RSS"
+
+[discussion_label]
+other = "Discussion"
+
+[discussion_join]
+other = "Join the thread"
+
+[discussion_prompt]
+other = "No thread linked yet. Start the conversation:"
+
+[discussion_forum]
+other = "Community forum"
+
+[card_view_on_arkhamdb]
+other = "View on ArkhamDB"
+
+[card_image_unavailable]
+other = "image unavailable"
+
+[card_name_english_note]
+other = "(name in English)"

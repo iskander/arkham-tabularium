@@ -1,0 +1,33 @@
+{{/* Renders an article card. Call with: {{ partial "card.html" . }} */}}
+<article class="card">
+  <div class="card-meta">
+    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+    {{ with .Params.cycle }}<span>{{ . }}</span>{{ end }}
+    {{ with .Params.difficulty }}
+    <span class="difficulty {{ . }}">
+      {{ if eq . "easy" }}★☆☆☆
+      {{ else if eq . "standard" }}★★☆☆
+      {{ else if eq . "hard" }}★★★☆
+      {{ else if eq . "expert" }}★★★★
+      {{ end }}
+    </span>
+    {{ end }}
+  </div>
+
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+  {{ with .Description }}
+  <p class="card-summary">{{ . }}</p>
+  {{ else }}
+  <p class="card-summary">{{ .Summary | truncate 120 }}</p>
+  {{ end }}
+
+  <div class="card-footer">
+    <span class="tag-pill type-{{ .Section }}">{{ .Section }}</span>
+    {{ with .Params.tags }}
+      {{ range first 3 . }}
+      <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+</article>

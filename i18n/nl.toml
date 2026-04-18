@@ -1,0 +1,65 @@
+[latest_dispatches]
+other = "Laatste publicaties"
+
+[reading_time]
+other = "{{ . }} min lezen"
+
+[tags_label]
+other = "Labels"
+
+[written_by]
+other = "Geschreven door"
+
+[license_line]
+other = "Inhoud onder licentie"
+
+[copyright_line]
+other = "Arkham Horror: Het Kaartspel is © Fantasy Flight Games"
+
+[difficulty_label]
+other = "Moeilijkheid"
+
+[difficulty_easy]
+other = "Makkelijk"
+
+[difficulty_standard]
+other = "Standaard"
+
+[difficulty_hard]
+other = "Moeilijk"
+
+[difficulty_expert]
+other = "Expert"
+
+[standalone_yes]
+other = "Ja"
+
+[standalone_no]
+other = "Nee"
+
+[also_available_in]
+other = "Ook beschikbaar in"
+
+[rss_feed]
+other = "RSS"
+
+[discussion_label]
+other = "Discussie"
+
+[discussion_join]
+other = "Deelnemen aan de discussie"
+
+[discussion_prompt]
+other = "Nog geen thread gekoppeld. Start het gesprek:"
+
+[discussion_forum]
+other = "Communityforum"
+
+[card_view_on_arkhamdb]
+other = "Bekijk op ArkhamDB"
+
+[card_image_unavailable]
+other = "afbeelding niet beschikbaar"
+
+[card_name_english_note]
+other = "(naam in het Engels)"

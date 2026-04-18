@@ -1,0 +1,161 @@
+baseURL = "https://iskander.github.io/arkham-tabularium/"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false   # English at root /, French at /fr/, etc.
+
+title = "Arkham Tabularium"
+
+[params]
+  author = "Alexandre"
+  goatcounter = ""   # ← your GoatCounter site code (e.g. "arkhamt" for arkhamt.goatcounter.com)
+
+[taxonomies]
+  tag = "tags"
+  cycle = "cycles"
+  difficulty = "difficulty"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+# ── LANGUAGES ────────────────────────────────────────────────────────────────
+
+[languages]
+
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-us"
+    weight = 1
+    title = "Arkham Tabularium"
+    [languages.en.params]
+      description = "Scenario reviews, deck guides, campaign logs, and investigator analyses for Arkham Horror: The Card Game."
+      tagline = "An archive of investigations, obsessions, and eldritch encounters"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        name = "Scenarios"
+        url = "/scenarios/"
+        weight = 10
+      [[languages.en.menu.main]]
+        name = "Investigators"
+        url = "/investigators/"
+        weight = 20
+      [[languages.en.menu.main]]
+        name = "Deck Guides"
+        url = "/decks/"
+        weight = 30
+      [[languages.en.menu.main]]
+        name = "Campaigns"
+        url = "/campaigns/"
+        weight = 40
+      [[languages.en.menu.main]]
+        name = "Articles"
+        url = "/articles/"
+        weight = 50
+
+  [languages.fr]
+    languageName = "Français"
+    languageCode = "fr-be"
+    weight = 2
+    title = "Arkham Tabularium"
+    [languages.fr.params]
+      description = "Analyses de scénarios, guides de decks, carnets de campagne et portraits d'investigateurs pour Arkham Horror : Le Jeu de Cartes."
+      tagline = "Une archive d'investigations, d'obsessions et de rencontres eldritches"
+
+    [languages.fr.menu]
+      [[languages.fr.menu.main]]
+        name = "Scénarios"
+        url = "/fr/scenarios/"
+        weight = 10
+      [[languages.fr.menu.main]]
+        name = "Investigateurs"
+        url = "/fr/investigators/"
+        weight = 20
+      [[languages.fr.menu.main]]
+        name = "Guides de deck"
+        url = "/fr/decks/"
+        weight = 30
+      [[languages.fr.menu.main]]
+        name = "Campagnes"
+        url = "/fr/campaigns/"
+        weight = 40
+      [[languages.fr.menu.main]]
+        name = "Articles"
+        url = "/fr/articles/"
+        weight = 50
+
+  # Uncomment and fill in to add Dutch or another language:
+  # [languages.nl]
+  #   languageName = "Nederlands"
+  #   languageCode = "nl-be"
+  #   weight = 3
+  #   ...
+
+  [languages.pt]
+    languageName = "Português"
+    languageCode = "pt-br"
+    weight = 3
+    title = "Arkham Tabularium"
+    [languages.pt.params]
+      description = "Análises de cenários, guias de decks, diários de campanha e retratos de investigadores para Arkham Horror: O Jogo de Cartas."
+      tagline = "Um arquivo de investigações, obsessões e encontros eldritch"
+
+    [languages.pt.menu]
+      [[languages.pt.menu.main]]
+        name = "Cenários"
+        url = "/pt/scenarios/"
+        weight = 10
+      [[languages.pt.menu.main]]
+        name = "Investigadores"
+        url = "/pt/investigators/"
+        weight = 20
+      [[languages.pt.menu.main]]
+        name = "Guias de Deck"
+        url = "/pt/decks/"
+        weight = 30
+      [[languages.pt.menu.main]]
+        name = "Campanhas"
+        url = "/pt/campaigns/"
+        weight = 40
+      [[languages.pt.menu.main]]
+        name = "Artigos"
+        url = "/pt/articles/"
+        weight = 50
+
+  [languages.nl]
+    languageName = "Nederlands"
+    languageCode = "nl-be"
+    weight = 4
+    title = "Arkham Tabularium"
+    [languages.nl.params]
+      description = "Scenario-analyses, deckgidsen, campagnejournalen en onderzoekersbesprekingen voor Arkham Horror: Het Kaartspel."
+      tagline = "Een archief van onderzoeken, obsessies en eldritch ontmoetingen"
+
+    [languages.nl.menu]
+      [[languages.nl.menu.main]]
+        name = "Scenario's"
+        url = "/nl/scenarios/"
+        weight = 10
+      [[languages.nl.menu.main]]
+        name = "Onderzoekers"
+        url = "/nl/investigators/"
+        weight = 20
+      [[languages.nl.menu.main]]
+        name = "Deckgidsen"
+        url = "/nl/decks/"
+        weight = 30
+      [[languages.nl.menu.main]]
+        name = "Campagnes"
+        url = "/nl/campaigns/"
+        weight = 40
+      [[languages.nl.menu.main]]
+        name = "Artikelen"
+        url = "/nl/articles/"
+        weight = 50

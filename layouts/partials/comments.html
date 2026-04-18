@@ -1,0 +1,67 @@
+{{/* Discussion links partial
+     Renders BGG and/or Reddit discussion links at the bottom of an article.
+     Controlled via front matter:
+
+       bgg_thread: "https://boardgamegeek.com/thread/XXXXXXX"
+       reddit_thread: "https://www.reddit.com/r/arkhamhorrorlcg/comments/XXXXX"
+       comments: false   ← set to false to hide the block entirely
+
+     The block still renders if neither URL is provided — it shows a
+     call to action prompting readers to start a discussion.
+*/}}
+
+{{ if ne .Params.comments false }}
+<div class="discussion-block">
+  <div class="discussion-header">
+    <span class="discussion-label">{{ i18n "discussion_label" }}</span>
+  </div>
+
+  {{ if or .Params.bgg_thread .Params.reddit_thread }}
+  <div class="discussion-links">
+    {{ with .Params.bgg_thread }}
+    <a href="{{ . }}" class="discussion-link discussion-link--bgg" target="_blank" rel="noopener">
+      <span class="discussion-link-icon">♟</span>
+      <span class="discussion-link-text">
+        <strong>BoardGameGeek</strong>
+        <span>{{ i18n "discussion_join" }}</span>
+      </span>
+      <span class="discussion-link-arrow">→</span>
+    </a>
+    {{ end }}
+
+    {{ with .Params.reddit_thread }}
+    <a href="{{ . }}" class="discussion-link discussion-link--reddit" target="_blank" rel="noopener">
+      <span class="discussion-link-icon">◈</span>
+      <span class="discussion-link-text">
+        <strong>r/arkhamhorrorlcg</strong>
+        <span>{{ i18n "discussion_join" }}</span>
+      </span>
+      <span class="discussion-link-arrow">→</span>
+    </a>
+    {{ end }}
+  </div>
+
+  {{ else }}
+  {{/* No thread links yet — show a prompt */}}
+  <p class="discussion-prompt">{{ i18n "discussion_prompt" }}</p>
+  <div class="discussion-links">
+    <a href="https://boardgamegeek.com/forum/2285884/arkham-horror-the-card-game" class="discussion-link discussion-link--bgg" target="_blank" rel="noopener">
+      <span class="discussion-link-icon">♟</span>
+      <span class="discussion-link-text">
+        <strong>BoardGameGeek</strong>
+        <span>{{ i18n "discussion_forum" }}</span>
+      </span>
+      <span class="discussion-link-arrow">→</span>
+    </a>
+    <a href="https://www.reddit.com/r/arkhamhorrorlcg/" class="discussion-link discussion-link--reddit" target="_blank" rel="noopener">
+      <span class="discussion-link-icon">◈</span>
+      <span class="discussion-link-text">
+        <strong>r/arkhamhorrorlcg</strong>
+        <span>{{ i18n "discussion_forum" }}</span>
+      </span>
+      <span class="discussion-link-arrow">→</span>
+    </a>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,57 @@
+{{ define "main" }}
+<div class="content-wrap article-wrap">
+
+  <header class="article-header">
+    <p class="article-type">
+      <a href="{{ .Section | relLangURL }}">{{ .Section | humanize }}</a>
+      {{ with .Params.cycle }} &nbsp;·&nbsp; {{ . }}{{ end }}
+    </p>
+
+    <h1>{{ .Title }}</h1>
+
+    <div class="article-byline">
+      <span>{{ .Date.Format "January 2, 2006" }}</span>
+      {{ with .Params.investigators }}
+      <span>{{ range . }}{{ . }}{{ end }}</span>
+      {{ end }}
+      {{ with .Params.difficulty }}
+      <span class="difficulty {{ . }}">
+        {{ i18n "difficulty_label" }}:
+        {{ if eq . "easy" }}{{ i18n "difficulty_easy" }} ★☆☆☆
+        {{ else if eq . "standard" }}{{ i18n "difficulty_standard" }} ★★☆☆
+        {{ else if eq . "hard" }}{{ i18n "difficulty_hard" }} ★★★☆
+        {{ else if eq . "expert" }}{{ i18n "difficulty_expert" }} ★★★★
+        {{ end }}
+      </span>
+      {{ end }}
+      {{ with .ReadingTime }}<span>{{ i18n "reading_time" . }}</span>{{ end }}
+    </div>
+
+    {{/* Language switcher — only shown when a translation exists */}}
+    {{ if .IsTranslated }}
+    <div class="translation-notice">
+      {{ i18n "also_available_in" }}:
+      {{ range .Translations }}
+      <a href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}">{{ .Language.LanguageName }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.tags }}
+  <div class="article-tags">
+    <span class="article-tags-label">{{ i18n "tags_label" }}</span>
+    {{ range . }}
+    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ partial "comments.html" . }}
+
+</div>
+{{ end }}

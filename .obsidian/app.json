@@ -1,0 +1,10 @@
+{
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": ".",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "content/articles",
+  "showUnsupportedFiles": false,
+  "spellcheck": true,
+  "promptDelete": true
+}

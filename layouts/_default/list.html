@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="content-wrap">
+  <div class="section-head">
+    <p class="section-label">{{ .Section | humanize }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div>{{ . }}</div>{{ end }}
+    {{ if not .Content }}
+    <p>{{ with .Site.Params.sectionDesc }}{{ index . $.Section }}{{ end }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="container">
+  <div class="cards-grid">
+    {{ range .Pages }}
+      {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+
+  {{ template "_internal/pagination.html" . }}
+</div>
+{{ end }}

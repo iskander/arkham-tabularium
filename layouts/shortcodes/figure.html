@@ -1,0 +1,79 @@
+{{/*
+  FIGURE SHORTCODE  (overrides Hugo's built-in figure)
+  Renders a responsive, optimised image from the page bundle.
+
+  Usage:
+    {{< figure src="encounter-deck.jpg" alt="The encounter deck" >}}
+    {{< figure src="setup.jpg" alt="Initial setup" caption="Board state at the start of scenario 3." >}}
+    {{< figure src="map.jpg" alt="Location map" width="600" >}}
+    {{< figure src="card.jpg" alt="Card image" float="right" >}}   ← float left | right
+
+  Parameters:
+    src      — filename of the image in the page bundle (required)
+    alt      — alt text, already written in the article's language (required for accessibility)
+    caption  — optional caption, written in the article's language
+    width    — max display width in px (default: 800)
+    float    — "left" or "right" to float beside text (default: none, full-width block)
+    link     — optional URL to wrap the image in a link
+
+  Hugo processes the image at build time:
+  - Converts to WebP
+  - Generates a 400 px srcset variant for mobile
+  - Strips EXIF metadata
+  - Adds width/height attributes to prevent layout shift
+
+  Falls back gracefully if the image isn't found in the bundle
+  (e.g. if used outside a Page Bundle context).
+*/}}
+
+{{ $src     := .Get "src" }}
+{{ $alt     := .Get "alt" | default "" }}
+{{ $caption := .Get "caption" }}
+{{ $width   := .Get "width" | default 800 | int }}
+{{ $float   := .Get "float" }}
+{{ $link    := .Get "link" }}
+
+{{ $floatClass := "" }}
+{{ if eq $float "left"  }}{{ $floatClass = "figure--float-left"  }}{{ end }}
+{{ if eq $float "right" }}{{ $floatClass = "figure--float-right" }}{{ end }}
+
+{{/* ── Image processing ──────────────────────────────────────── */}}
+{{ $img := .Page.Resources.GetMatch $src }}
+
+{{ if $img }}
+
+  {{/* Full-size WebP, capped at requested width */}}
+  {{ $full := $img.Process (printf "resize %dx webp" $width) }}
+
+  {{/* Mobile srcset variant at half width, min 300 */}}
+  {{ $smallW := math.Max 300 (div $width 2) | int }}
+  {{ $small  := $img.Process (printf "resize %dx webp" $smallW) }}
+
+<figure class="article-figure {{ $floatClass }}">
+  {{ with $link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
+  <img
+    src="{{ $full.RelPermalink }}"
+    srcset="{{ $small.RelPermalink }} {{ $small.Width }}w,
+            {{ $full.RelPermalink }}  {{ $full.Width }}w"
+    sizes="{{ if $float }}(max-width: 640px) 100vw, {{ div $width 2 }}px{{ else }}(max-width: 640px) 100vw, {{ $full.Width }}px{{ end }}"
+    width="{{ $full.Width }}"
+    height="{{ $full.Height }}"
+    alt="{{ $alt }}"
+    loading="lazy"
+    decoding="async"
+  >
+  {{ with $link }}</a>{{ end }}
+  {{ with $caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{ end }}
+</figure>
+
+{{ else }}
+{{/* Fallback: image not in bundle — render a plain img tag with src as-is */}}
+<figure class="article-figure {{ $floatClass }}">
+  {{ with $link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" style="max-width: {{ $width }}px;">
+  {{ with $link }}</a>{{ end }}
+  {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{ end }}

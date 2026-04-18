@@ -1,0 +1,96 @@
+{{/*
+  CARD SHORTCODE
+  Fetches card data from ArkhamDB at build time and renders a card widget.
+
+  Usage:
+    {{< card "02003" >}}
+    {{< card "02003" name="Agnès Baker" >}}          ← override name (for translated articles)
+    {{< card "02003" size="small" >}}                ← small | medium (default) | large
+    {{< card "02003" name="Agnès Baker" lang="fr" >}} ← explicit lang override
+
+  The `name` parameter lets you provide the card name in the article's language,
+  since ArkhamDB's API returns English names only. If omitted, the English name
+  from the API is used.
+
+  `lang` defaults to the current page language (.Lang).
+
+  The card image is always fetched from ArkhamDB (language-neutral).
+  The surrounding UI text (faction label, "view on ArkhamDB") is translated
+  via i18n strings.
+
+  Requires Hugo Extended (for resources.GetRemote).
+  Remote fetches are cached by Hugo — they only happen once per build.
+*/}}
+
+{{ $code    := .Get 0 }}
+{{ $nameOvr := .Get "name" }}
+{{ $size    := .Get "size" | default "medium" }}
+{{ $lang    := .Get "lang" | default .Page.Lang }}
+
+{{/* ── Fetch card data from ArkhamDB API ─────────────────────── */}}
+{{ $apiURL  := printf "https://arkhamdb.com/api/public/card/%s" $code }}
+{{ $imgURL  := printf "https://arkhamdb.com/bundles/cards/%s.jpg" $code }}
+
+{{ $card    := dict }}
+{{ $apiErr  := false }}
+
+{{ with resources.GetRemote $apiURL }}
+  {{ with .Err }}
+    {{ $apiErr = true }}
+  {{ else }}
+    {{ $card = . | transform.Unmarshal }}
+  {{ end }}
+{{ else }}
+  {{ $apiErr = true }}
+{{ end }}
+
+{{/* ── Resolve display name ───────────────────────────────────── */}}
+{{ $name := $nameOvr | default ($card.name | default $code) }}
+
+{{/* ── Faction colour mapping ─────────────────────────────────── */}}
+{{ $faction := $card.faction_code | default "neutral" }}
+{{ $factionClass := printf "card-widget--faction-%s" $faction }}
+
+{{/* ── Size class ────────────────────────────────────────────── */}}
+{{ $sizeClass := printf "card-widget--%s" $size }}
+
+{{/* ── Render ─────────────────────────────────────────────────── */}}
+{{ if $apiErr }}
+<span class="card-widget card-widget--error">
+  <a href="{{ printf "https://arkhamdb.com/card/%s" $code }}" target="_blank" rel="noopener">
+    {{ $name }}
+  </a>
+  <span class="card-widget-error-note">({{ i18n "card_image_unavailable" }})</span>
+</span>
+{{ else }}
+<figure class="card-widget {{ $factionClass }} {{ $sizeClass }}">
+  <a href="{{ printf "https://arkhamdb.com/card/%s" $code }}"
+     target="_blank"
+     rel="noopener"
+     title="{{ i18n "card_view_on_arkhamdb" }} — {{ $name }}"
+     class="card-widget-link">
+    <div class="card-widget-img-wrap">
+      <img
+        src="{{ $imgURL }}"
+        alt="{{ $name }}"
+        loading="lazy"
+        decoding="async"
+        width="{{ if eq $size "small" }}120{{ else if eq $size "large" }}300{{ else }}180{{ end }}"
+      >
+      <div class="card-widget-overlay">
+        <span>{{ i18n "card_view_on_arkhamdb" }}</span>
+      </div>
+    </div>
+  </a>
+  <figcaption class="card-widget-caption">
+    <span class="card-widget-name">{{ $name }}</span>
+    {{ with $card.type_name }}
+    <span class="card-widget-type">{{ . }}</span>
+    {{ end }}
+    {{/* Show a note if the name was not overridden and the page language isn't English */}}
+    {{ if and (ne $lang "en") (not $nameOvr) }}
+    <span class="card-widget-lang-note">{{ i18n "card_name_english_note" }}</span>
+    {{ end }}
+  </figcaption>
+</figure>
+{{ end }}

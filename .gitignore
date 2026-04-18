@@ -1,0 +1,23 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# Obsidian — personal config (not shared)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/plugins/
+.obsidian/themes/
+.obsidian/snippets/
+
+# Obsidian — DO commit these (shared config)
+# .obsidian/app.json          ← wikilinks off, attachment path settings
+# .obsidian/templates.json    ← template folder location
+# .obsidian/templates/        ← the templates themselves
+
+# macOS
+.DS_Store
+
+# Node (if you ever add any JS tooling)
+node_modules/

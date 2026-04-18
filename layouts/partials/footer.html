@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <div class="container">
+    <p>{{ .Site.Title }}</p>
+    <div class="footer-rule"></div>
+    <p>
+      {{ i18n "written_by" }} <a href="#">{{ .Site.Params.author }}</a> &nbsp;·&nbsp;
+      {{ i18n "license_line" }} <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> &nbsp;·&nbsp;
+      <a href="{{ .Site.BaseURL }}index.xml">{{ i18n "rss_feed" }}</a> &nbsp;·&nbsp;
+      {{ i18n "copyright_line" }}
+    </p>
+  </div>
+</footer>

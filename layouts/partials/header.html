@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="container">
+    <a href="{{ "/" | relLangURL }}" class="site-logo">
+      Arkham <span>Tabularium</span>
+    </a>
+    <nav class="site-nav">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}"
+         {{ if ($.IsMenuCurrent "main" .) }}class="active"{{ end }}>
+        {{ .Name }}
+      </a>
+      {{ end }}
+
+      {{ if .IsTranslated }}
+      <span class="lang-sep">|</span>
+      {{ range .Translations }}
+      <a href="{{ .RelPermalink }}" class="lang-switch" lang="{{ .Language.Lang }}" title="{{ i18n "also_available_in" }} {{ .Language.LanguageName }}">
+        {{ .Language.LanguageName }}
+      </a>
+      {{ end }}
+      {{ else }}
+      {{/* Not translated: show other languages linking to their home */}}
+      {{ range .Sites }}
+        {{ if ne .Language.Lang $.Site.Language.Lang }}
+        <a href="{{ .Home.RelPermalink }}" class="lang-switch" lang="{{ .Language.Lang }}">
+          {{ .Language.LanguageName }}
+        </a>
+        {{ end }}
+      {{ end }}
+      {{ end }}
+    </nav>
+  </div>
+</header>
