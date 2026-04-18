@@ -6,7 +6,7 @@
      Analytics are skipped in local development (Hugo's .Site.IsServer check).
      To disable analytics on a specific page, add `analytics: false` to its front matter.
 */}}
-{{ if and .Site.Params.goatcounter (not .Site.IsServer) (ne .Params.analytics false) }}
+{{ if and .Site.Params.goatcounter (not hugo.IsServer) (ne .Params.analytics false) }}
 <script data-goatcounter="https://{{ .Site.Params.goatcounter }}.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 {{ end }}
