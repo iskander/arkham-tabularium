@@ -5,8 +5,8 @@ defaultContentLanguageInSubdir = false   # English at root /, French at /fr/, et
 title = "Arkham Tabularium"
 
 [params]
-  author = "Alexandre"
-  goatcounter = ""   # ← your GoatCounter site code (e.g. "arkhamt" for arkhamt.goatcounter.com)
+  author = "Iskander"
+  goatcounter = "arkhamt"   # ← your GoatCounter site code (e.g. "arkhamt" for arkhamt.goatcounter.com)
 
 [taxonomies]
   tag = "tags"
