@@ -42,7 +42,7 @@
 
     {{ with .Params.tags }}
       {{ range first 3 . }}
-      <a href="{{ .Site.Home.RelPermalink }}tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
+      <a href="{{ $.Site.Home.RelPermalink }}tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
       {{ end }}
     {{ end }}
   </div>
