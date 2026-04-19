@@ -1,0 +1,15 @@
+{{/*
+  CENTER SHORTCODE — centers a block of text or mixed content.
+
+  Usage:
+    {{< center >}}
+    This paragraph will be centered.
+
+    As will this one.
+    {{< /center >}}
+
+  Supports Markdown inside — it's run through markdownify.
+*/}}
+<div class="text-center">
+{{ .Inner | markdownify }}
+</div>
