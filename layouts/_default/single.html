@@ -51,7 +51,7 @@
   <div class="article-tags">
     <span class="article-tags-label">{{ i18n "tags_label" }}</span>
     {{ range . }}
-    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>
+    <a href="{{ .Site.Home.RelPermalink }}tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
     {{ end }}
   </div>
   {{ end }}

@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="container">
-    <a href="{{ "/" | relLangURL }}" class="site-logo">
+    <a href="{{ .Site.Home.RelPermalink }}" class="site-logo">
       Arkham <span>Tabularium</span>
     </a>
     <nav class="site-nav">
@@ -37,7 +37,7 @@
       {{ end }}
       {{ else }}
       {{/* Not translated: show other languages linking to their home */}}
-      {{ range .Sites }}
+      {{ range hugo.Sites }}
         {{ if ne .Language.Lang $.Site.Language.Lang }}
         <a href="{{ .Home.RelPermalink }}" class="lang-switch" lang="{{ .Language.Lang }}">
           {{ .Language.LanguageName }}
