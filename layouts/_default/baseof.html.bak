@@ -875,23 +875,6 @@
       .site-nav { display: none; } /* could be a hamburger menu */
       .cards-grid { grid-template-columns: 1fr; }
       .stat-block { grid-template-columns: 1fr 1fr; }
-
-      /* Drop figure floats on mobile — let images take full width */
-      .article-figure.figure--float-left,
-      .article-figure.figure--float-right {
-        float: none;
-        width: 100%;
-        margin: 1.5rem 0;
-      }
-
-      /* Card widgets scale down */
-      .card-widget--large  img { width: 240px; }
-      .card-widget--medium img { width: 150px; }
-      .card-widget--small  img { width: 100px; }
-
-      /* Tighter article padding on phones */
-      .article-wrap { padding: 1.5rem 0 3rem; }
-      .content-wrap { padding: 0 1rem; }
     }
   </style>
   {{ partial "analytics.html" . }}

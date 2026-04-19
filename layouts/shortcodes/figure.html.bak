@@ -104,7 +104,7 @@
        decoding="async"
        referrerpolicy="no-referrer"
        style="width: 100%; max-width: {{ $width }}px; height: auto; display: block; margin: 0 auto;">
-  {{ with $link }}</a>{{ end }}
+         {{ with $link }}</a>{{ end }}
   {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
 {{ end }}
