@@ -2,7 +2,7 @@
 title: "Chapter 2 Class Spotlight : introduction"
 date: 2026-04-19
 draft: false
-description: ""
+description: "Introducing a series dedicated to analyzing the five classes of Arkham Horror: The Card Game within the newly established “Chapter 2” Evergreen card pool."
 tags:
   - chapter-2
   - class-spotlight
