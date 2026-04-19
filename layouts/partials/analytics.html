@@ -3,7 +3,7 @@
        [params]
          goatcounter = "yoursite"   ← the subdomain part of yoursite.goatcounter.com
 
-     Analytics are skipped in local development (Hugo's .Site.IsServer check).
+     Analytics are skipped in local development (hugo.IsServer check).
      To disable analytics on a specific page, add `analytics: false` to its front matter.
 */}}
 {{ if and .Site.Params.goatcounter (not hugo.IsServer) (ne .Params.analytics false) }}

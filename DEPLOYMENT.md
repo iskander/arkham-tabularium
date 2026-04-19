@@ -232,7 +232,7 @@ occasionally need a restart to pick them up on first open.
 Before writing real content, run through the full workflow once with a
 throwaway article to make sure everything works:
 
-1. In Obsidian: create `content/articles/test-article/index.md`
+1. In Obsidian: create `content/arkham-lcg/articles/test-article/index.md`
 2. Insert the "Article" template (Cmd/Ctrl+P → Insert template → Article)
 3. Fill in the title in Properties panel, leave `draft: true`
 4. Check `hugo server -D` in terminal — article appears
@@ -250,7 +250,7 @@ throwaway article to make sure everything works:
 9. Delete the test article:
 
    ```bash
-   rm -rf content/articles/test-article
+   rm -rf content/arkham-lcg/articles/test-article
    git add .
    git commit -m "Remove test article"
    git push
@@ -275,10 +275,13 @@ If all seven steps worked, the full pipeline is verified.
 
 ### When adding translations
 
-- Add language files to all `content/*/` sections (not just the ones
-  with translated articles — the section indexes are needed too)
+- Add language files to all `content/GAME/TYPE/` sections (not just the
+  ones with translated articles — the section indexes are needed too)
 - Keep the i18n files (`i18n/*.toml`) in sync: all four should have
   the same set of keys
+- Game section indexes (`content/GAME/_index.XX.md`) need translations
+  in every language you support, even if individual articles aren't
+  all translated
 
 ---
 
@@ -314,6 +317,12 @@ the site is actually served from.
 **Language switcher shows wrong link:**
 A section `_index.XX.md` is missing. Make sure every section has index
 files in every configured language.
+
+**A game section doesn't appear in the menu:**
+The menu is generated dynamically from sections with published articles.
+Check that (a) the game's `content/GAME/_index.md` exists, and (b) at
+least one article in that game has `draft: false`. Empty or all-draft
+sections are intentionally hidden.
 
 **Card shortcode shows "image unavailable":**
 ArkhamDB API timeout or card code doesn't exist. Verify the code on

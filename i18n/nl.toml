@@ -49,12 +49,6 @@ other = "Discussie"
 [discussion_join]
 other = "Deelnemen aan de discussie"
 
-[discussion_prompt]
-other = "Nog geen thread gekoppeld. Start het gesprek:"
-
-[discussion_forum]
-other = "Communityforum"
-
 [card_view_on_arkhamdb]
 other = "Bekijk op ArkhamDB"
 
@@ -63,3 +57,9 @@ other = "afbeelding niet beschikbaar"
 
 [card_name_english_note]
 other = "(naam in het Engels)"
+
+[no_articles_yet]
+other = "Nog geen artikelen — kom binnenkort terug."
+
+[hero_eyebrow]
+other = "Mythos-spellen · LCG · RPG · supplementen"

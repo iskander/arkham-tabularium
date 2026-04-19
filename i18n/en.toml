@@ -49,12 +49,6 @@ other = "Discussion"
 [discussion_join]
 other = "Join the thread"
 
-[discussion_prompt]
-other = "No thread linked yet. Start the conversation:"
-
-[discussion_forum]
-other = "Community forum"
-
 [card_view_on_arkhamdb]
 other = "View on ArkhamDB"
 
@@ -63,3 +57,9 @@ other = "image unavailable"
 
 [card_name_english_note]
 other = "(name in English)"
+
+[no_articles_yet]
+other = "No articles yet — check back soon."
+
+[hero_eyebrow]
+other = "Mythos games · LCG · RPG · supplements"

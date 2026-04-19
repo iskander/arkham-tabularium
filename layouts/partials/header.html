@@ -4,13 +4,30 @@
       Arkham <span>Tabularium</span>
     </a>
     <nav class="site-nav">
-      {{ range .Site.Menus.main }}
-      <a href="{{ .URL }}"
-         {{ if ($.IsMenuCurrent "main" .) }}class="active"{{ end }}>
-        {{ .Name }}
+      {{/*
+        Dynamic game menu.
+        Iterates over top-level sections of content/ and shows only those
+        that contain at least one published (non-draft) article.
+        A section appears/disappears automatically based on content.
+      */}}
+      {{ $games := slice }}
+      {{ range .Site.Sections }}
+        {{/* Count published articles recursively in this section */}}
+        {{ $published := where .RegularPagesRecursive "Draft" false }}
+        {{ if gt (len $published) 0 }}
+          {{ $games = $games | append . }}
+        {{ end }}
+      {{ end }}
+
+      {{ range $games }}
+      <a href="{{ .RelPermalink }}"
+         {{ if $.IsDescendant . }}class="active"
+         {{ else if eq $.RelPermalink .RelPermalink }}class="active"{{ end }}>
+        {{ .Title }}
       </a>
       {{ end }}
 
+      {{/* Language switcher */}}
       {{ if .IsTranslated }}
       <span class="lang-sep">|</span>
       {{ range .Translations }}

@@ -3,7 +3,12 @@
 
   <header class="article-header">
     <p class="article-type">
-      <a href="{{ .Section | relLangURL }}">{{ .Section | humanize }}</a>
+      {{/* Breadcrumb: Game › Type */}}
+      {{ with .FirstSection }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      {{ $parent := .Parent }}
+      {{ if and $parent (ne $parent.RelPermalink .FirstSection.RelPermalink) }}
+        &nbsp;›&nbsp;<a href="{{ $parent.RelPermalink }}">{{ $parent.Title }}</a>
+      {{ end }}
       {{ with .Params.cycle }} &nbsp;·&nbsp; {{ . }}{{ end }}
     </p>
 

@@ -1,4 +1,10 @@
-{{/* Renders an article card. Call with: {{ partial "card.html" . }} */}}
+{{/* Renders an article card. Call with: {{ partial "card.html" . }}
+
+     With the new structure (content/GAME/TYPE/article.md), .Section returns
+     the top-level game slug (e.g. "arkham-lcg"). We use .Parent to find
+     the type section (e.g. "scenarios"), falling back gracefully if the
+     article structure is flatter.
+*/}}
 <article class="card">
   <div class="card-meta">
     <span>{{ .Date.Format "Jan 2, 2006" }}</span>
@@ -23,7 +29,17 @@
   {{ end }}
 
   <div class="card-footer">
-    <span class="tag-pill type-{{ .Section }}">{{ .Section }}</span>
+    {{/* Game pill — always shown */}}
+    {{ with .FirstSection }}
+    <a href="{{ .RelPermalink }}" class="tag-pill type-game">{{ .Title }}</a>
+    {{ end }}
+
+    {{/* Type pill — the immediate parent section, if different from the top */}}
+    {{ $parent := .Parent }}
+    {{ if and $parent (ne $parent.RelPermalink .FirstSection.RelPermalink) }}
+    <a href="{{ $parent.RelPermalink }}" class="tag-pill type-{{ path.Base $parent.RelPermalink }}">{{ $parent.Title }}</a>
+    {{ end }}
+
     {{ with .Params.tags }}
       {{ range first 3 . }}
       <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>

@@ -37,22 +37,37 @@ The template folder is already set to `.obsidian/templates/`.
 
 **Option A — Obsidian (recommended for writing)**
 
-1. In the file explorer, navigate to the right `content/` subfolder
-   (e.g. `content/scenarios/`)
+1. In the file explorer, navigate to the right game + type folder
+   (e.g. `content/arkham-lcg/scenarios/` or `content/call-of-cthulhu/scenarios/`)
 2. Create a new folder for the article (for Page Bundle support):
    right-click → New folder → `the-midnight-masks`
 3. Inside that folder, create `index.md`
 4. Open the file, then: **Cmd/Ctrl+P** → "Templates: Insert template"
-   → select **Scenario Review** (or whichever type applies)
+   → select the right template (**Scenario Review**, **Adventure**,
+   **Supplement Review**, **Deck Guide**, **Campaign Log**,
+   **Investigator Analysis**, or **Article**)
 5. Fill in the title and front matter fields using the Properties panel
    (the structured UI above the document body)
 
 **Option B — Hugo CLI (for the front matter scaffold)**
 
 ```bash
-mkdir -p content/scenarios/the-midnight-masks
-hugo new --kind scenarios scenarios/the-midnight-masks/index.md
+# AH:LCG scenario
+mkdir -p content/arkham-lcg/scenarios/the-midnight-masks
+hugo new --kind scenarios arkham-lcg/scenarios/the-midnight-masks/index.md
+
+# Call of Cthulhu scenario
+mkdir -p content/call-of-cthulhu/scenarios/dead-light
+hugo new --kind scenarios call-of-cthulhu/scenarios/dead-light/index.md
+
+# AH:RPG adventure
+mkdir -p content/arkham-rpg/adventures/hill-manor
+hugo new --kind adventures arkham-rpg/adventures/hill-manor/index.md
 ```
+
+Hugo picks the archetype based on the content type (the segment after the
+game name). `arkham-lcg/scenarios/...` uses `archetypes/scenarios.md`;
+`call-of-cthulhu/supplements/...` uses `archetypes/supplements.md`; etc.
 
 Then open the file in Obsidian — the front matter is pre-filled from
 the archetype, and Obsidian's Properties panel displays it as a form.
@@ -65,6 +80,8 @@ Write normally in Obsidian. A few things to keep in mind:
 (wikilinks are disabled in the vault settings):
 ```markdown
 As discussed in [The Gathering](../the-gathering/), the core loop…
+# (use relative paths — your article and the link target live in
+# the same GAME/TYPE/ folder)
 ```
 
 **Card images** — you can reference ArkhamDB cards two ways:

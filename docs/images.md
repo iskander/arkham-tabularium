@@ -28,7 +28,7 @@ static/img/the-gathering-setup.jpg    ← hard to manage, shared namespace
 
 **Right — Page Bundle:**
 ```
-content/scenarios/the-gathering/
+content/arkham-lcg/scenarios/the-gathering/
   index.md
   index.fr.md
   setup.jpg                           ← lives with its article

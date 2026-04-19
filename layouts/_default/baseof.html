@@ -833,6 +833,34 @@
       margin: 0.5rem 0 0;
     }
 
+
+    /* ── EMPTY SECTIONS & SECTION DESCRIPTIONS ─────────────────── */
+    .empty-section {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--subtle);
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .section-description {
+      color: var(--subtle);
+      font-size: 1.05rem;
+      margin-top: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* Game pill on cards — uses crimson accent so games stand out from type/tag pills */
+    .tag-pill.type-game {
+      color: var(--crimson);
+      border-color: var(--crimson);
+      font-weight: 500;
+    }
+    a.tag-pill.type-game:hover {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
     /* ── RESPONSIVE ────────────────────────────────────────────── */
     @media (max-width: 640px) {
       html { font-size: 16px; }

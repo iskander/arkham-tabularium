@@ -49,12 +49,6 @@ other = "Discussion"
 [discussion_join]
 other = "Rejoindre la discussion"
 
-[discussion_prompt]
-other = "Pas encore de fil lié. Lancez la conversation :"
-
-[discussion_forum]
-other = "Forum de la communauté"
-
 [card_view_on_arkhamdb]
 other = "Voir sur ArkhamDB"
 
@@ -63,3 +57,9 @@ other = "image indisponible"
 
 [card_name_english_note]
 other = "(nom en anglais)"
+
+[no_articles_yet]
+other = "Pas encore d'articles — revenez bientôt."
+
+[hero_eyebrow]
+other = "Jeux mythos · JdC · JdR · suppléments"

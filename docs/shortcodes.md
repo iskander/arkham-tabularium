@@ -85,14 +85,14 @@ to translate — just write naturally.
 
 A regular article is a single `.md` file:
 ```
-content/scenarios/the-gathering.md
+content/arkham-lcg/scenarios/the-gathering.md
 ```
 
 An article with images should be a **Page Bundle** — a folder with `index.md`
 inside it, and images alongside:
 
 ```
-content/scenarios/the-gathering/
+content/arkham-lcg/scenarios/the-gathering/
   index.md                  ← English article
   index.fr.md               ← French translation
   encounter-deck.jpg        ← shared image (language-neutral)
@@ -108,12 +108,12 @@ you only store the file once. The `alt` and `caption` text you write in each
 
 ```bash
 # Instead of:
-hugo new scenarios/the-midnight-masks.md
+hugo new arkham-lcg/scenarios/the-midnight-masks.md
 
 # Do this:
-mkdir -p content/scenarios/the-midnight-masks
-hugo new --kind scenarios scenarios/the-midnight-masks/index.md
-# Then copy images into content/scenarios/the-midnight-masks/
+mkdir -p content/arkham-lcg/scenarios/the-midnight-masks
+hugo new --kind scenarios arkham-lcg/scenarios/the-midnight-masks/index.md
+# Then copy images into content/arkham-lcg/scenarios/the-midnight-masks/
 ```
 
 Or just create the folder and file manually — Hugo treats any folder

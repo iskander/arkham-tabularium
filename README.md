@@ -1,6 +1,8 @@
-# The Mythos Files — AH:LCG Site
+# Arkham Tabularium
 
-A static site built with [Hugo](https://gohugo.io/) for writing about Arkham Horror: The Card Game.
+A multilingual static site built with [Hugo](https://gohugo.io/) for writing about Arkham Horror: The Card Game, the Arkham Horror RPG, Call of Cthulhu, and other mythos games.
+
+Games live in their own top-level sections (`content/arkham-lcg/`, `content/arkham-rpg/`, `content/call-of-cthulhu/`). New games can be added by simply creating a new folder — they appear in the menu automatically when they have at least one published article.
 
 ## Quick start
 
@@ -45,24 +47,50 @@ Output goes to `public/`. That folder is your entire website — upload it anywh
 
 ### Create a new article
 
+Articles live under `content/GAME/TYPE/article-name.md`. Examples:
+
 ```bash
-# Scenario review
-hugo new scenarios/the-midnight-masks.md
+# Arkham Horror LCG scenario review
+hugo new arkham-lcg/scenarios/the-midnight-masks.md
 
-# Deck guide
-hugo new decks/agnes-baker-spell-spam.md
+# Arkham Horror LCG deck guide
+hugo new arkham-lcg/decks/agnes-baker-spell-spam.md
 
-# Campaign log
-hugo new campaigns/dunwich-ep3.md
+# Arkham Horror LCG campaign log
+hugo new arkham-lcg/campaigns/dunwich-ep3.md
 
-# Investigator analysis
-hugo new investigators/patrice-hathaway.md
+# Arkham Horror RPG adventure
+hugo new arkham-rpg/adventures/the-haunting-of-hill-manor.md
 
-# General article
-hugo new articles/on-fail-forward-mechanics.md
+# Call of Cthulhu scenario
+hugo new call-of-cthulhu/scenarios/dead-light.md
+
+# Call of Cthulhu supplement review
+hugo new call-of-cthulhu/supplements/malleus-monstrorum.md
+
+# General article (can go under any game)
+hugo new arkham-lcg/articles/on-fail-forward-mechanics.md
 ```
 
-Hugo uses the matching archetype template from `archetypes/` and pre-fills the front matter.
+For articles with images, use a Page Bundle (folder with `index.md`):
+
+```bash
+mkdir -p content/arkham-lcg/scenarios/the-midnight-masks
+hugo new --kind scenarios arkham-lcg/scenarios/the-midnight-masks/index.md
+```
+
+Hugo picks the matching archetype from `archetypes/` based on the content
+type (the segment after the game name). Available archetypes:
+
+| Type | Archetype | Used by |
+|---|---|---|
+| `scenarios` | `archetypes/scenarios.md` | AH:LCG scenario reviews, CoC scenarios |
+| `decks` | `archetypes/decks.md` | AH:LCG deck guides |
+| `campaigns` | `archetypes/campaigns.md` | AH:LCG campaign logs |
+| `investigators` | `archetypes/investigators.md` | AH:LCG investigator analyses |
+| `adventures` | `archetypes/adventures.md` | AH:RPG, CoC adventures |
+| `supplements` | `archetypes/supplements.md` | CoC supplement reviews |
+| `articles` | `archetypes/default.md` | General essays (any game) |
 
 ### Publish an article
 
@@ -244,11 +272,28 @@ All design tokens are CSS variables in `layouts/_default/baseof.html`, in the `:
 --body:    #c8c2b4;   /* Body text */
 ```
 
-### Add a new section
+### Add a new game
 
-1. Create `content/newsection/_index.md`
-2. Add an entry in `hugo.toml` under `[[menu.main]]`
-3. Create an archetype at `archetypes/newsection.md` if needed
+1. Create a folder for the game under `content/`:
+   ```bash
+   mkdir -p content/delta-green/{scenarios,articles}
+   ```
+2. Add section index files for each language:
+   ```bash
+   # content/delta-green/_index.md
+   # content/delta-green/_index.fr.md
+   # content/delta-green/_index.pt.md
+   # content/delta-green/_index.nl.md
+   ```
+   Each contains front matter with a `title` (translated per language) and
+   optionally a `description`.
+3. Add content-type subsections the same way (`scenarios/_index.md`, etc.).
+4. Write at least one article (`draft: false`) — the game appears in the
+   menu automatically on next build.
+
+No changes to `hugo.toml` or templates are needed. The menu is fully
+dynamic: any top-level folder under `content/` that contains a published
+article is treated as a game and displayed.
 
 ---
 
@@ -256,29 +301,52 @@ All design tokens are CSS variables in `layouts/_default/baseof.html`, in the `:
 
 ```
 arkham-tabularium/
-├── hugo.toml                   ← Site configuration
-├── archetypes/
-│   ├── default.md              ← Template for general articles
-│   ├── scenarios.md            ← Template for scenario reviews
-│   ├── decks.md                ← Template for deck guides
-│   └── campaigns.md            ← Template for campaign logs
+├── hugo.toml                        ← Site configuration
+├── archetypes/                      ← Templates for new articles
+│   ├── default.md                   ← General articles
+│   ├── scenarios.md                 ← AH:LCG & CoC scenario reviews
+│   ├── decks.md                     ← AH:LCG deck guides
+│   ├── campaigns.md                 ← AH:LCG campaign logs
+│   ├── investigators.md             ← AH:LCG investigator analyses
+│   ├── adventures.md                ← RPG adventures (AH:RPG, CoC)
+│   └── supplements.md               ← CoC supplement reviews
+├── i18n/                            ← UI translations (en, fr, pt, nl)
 ├── layouts/
 │   ├── _default/
-│   │   ├── baseof.html         ← Base HTML + all CSS
-│   │   ├── list.html           ← Section listing pages
-│   │   └── single.html         ← Individual article pages
-│   ├── index.html              ← Home page
-│   └── partials/
-│       ├── header.html
-│       ├── footer.html
-│       └── card.html           ← Article card component
+│   │   ├── baseof.html              ← Base HTML + all CSS
+│   │   ├── list.html                ← Section listing pages
+│   │   └── single.html              ← Individual article pages
+│   ├── index.html                   ← Home page
+│   ├── partials/
+│   │   ├── header.html              ← Dynamic game menu + lang switcher
+│   │   ├── footer.html
+│   │   ├── card.html                ← Article card component
+│   │   ├── analytics.html           ← GoatCounter snippet
+│   │   └── comments.html            ← BGG/Reddit discussion block
+│   └── shortcodes/
+│       ├── card.html                ← ArkhamDB card widget
+│       ├── cardgroup.html           ← Multi-card row
+│       └── figure.html              ← Responsive image from Page Bundle
 └── content/
-    ├── scenarios/              ← Scenario reviews go here
-    ├── investigators/          ← Investigator analyses
-    ├── decks/                  ← Deck guides
-    ├── campaigns/              ← Campaign logs
-    └── articles/               ← General articles
+    ├── arkham-lcg/                  ← Arkham Horror: The Card Game
+    │   ├── _index.{md,fr.md,...}    ← Section landing page (per language)
+    │   ├── scenarios/
+    │   ├── decks/
+    │   ├── campaigns/
+    │   ├── investigators/
+    │   └── articles/
+    ├── arkham-rpg/                  ← Arkham Horror RPG
+    │   ├── adventures/
+    │   └── articles/
+    └── call-of-cthulhu/             ← Call of Cthulhu
+        ├── scenarios/
+        ├── supplements/
+        └── articles/
 ```
+
+**Game sections only appear in the navigation menu once they contain at
+least one published (non-draft) article.** An empty game section stays
+invisible to readers until you add content to it.
 
 ---
 
@@ -291,8 +359,8 @@ The site supports multiple languages out of the box. English is the default (ser
 Add the language code before `.md` in the filename:
 
 ```
-content/scenarios/the-gathering.md       ← English (default)
-content/scenarios/the-gathering.fr.md    ← French translation
+content/arkham-lcg/scenarios/the-gathering.md       ← English (default)
+content/arkham-lcg/scenarios/the-gathering.fr.md    ← French translation
 ```
 
 Hugo links them automatically. A "also available in" notice appears on each article that has a translation, and the language switcher in the header activates.
@@ -310,10 +378,10 @@ Articles with no translation simply appear in their own language only — no pla
 
 | Language | URL |
 |---|---|
-| English | `iskander.github.io/arkham-tabularium/scenarios/the-gathering/` |
-| French | `iskander.github.io/arkham-tabularium/fr/scenarios/the-gathering/` |
-| Dutch | `iskander.github.io/arkham-tabularium/nl/scenarios/the-gathering/` |
-| Portuguese | `iskander.github.io/arkham-tabularium/pt/scenarios/the-gathering/` |
+| English | `iskander.github.io/arkham-tabularium/arkham-lcg/scenarios/the-gathering/` |
+| French | `iskander.github.io/arkham-tabularium/fr/arkham-lcg/scenarios/the-gathering/` |
+| Dutch | `iskander.github.io/arkham-tabularium/nl/arkham-lcg/scenarios/the-gathering/` |
+| Portuguese | `iskander.github.io/arkham-tabularium/pt/arkham-lcg/scenarios/the-gathering/` |
 
 English lives at the root (no `/en/` prefix). All other languages are prefixed.
 
@@ -397,7 +465,7 @@ Articles with images should be **Page Bundles** — a folder instead of a
 single file, with images stored alongside the Markdown:
 
 ```
-content/scenarios/the-gathering/
+content/arkham-lcg/scenarios/the-gathering/
   index.md            ← English
   index.fr.md         ← French translation
   index.pt.md         ← Portuguese translation

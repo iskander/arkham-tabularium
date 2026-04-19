@@ -1,21 +1,39 @@
 {{ define "main" }}
 <div class="content-wrap">
   <div class="section-head">
-    <p class="section-label">{{ .Section | humanize }}</p>
-    <h1>{{ .Title }}</h1>
-    {{ with .Content }}<div>{{ . }}</div>{{ end }}
-    {{ if not .Content }}
-    <p>{{ with .Site.Params.sectionDesc }}{{ index . $.Section }}{{ end }}</p>
+    {{/* Section label: show the game name if we're inside a game but not at its root */}}
+    {{ with .FirstSection }}
+      {{ if ne $.RelPermalink .RelPermalink }}
+      <p class="section-label"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+      {{ end }}
     {{ end }}
+
+    <h1>{{ .Title }}</h1>
+
+    {{ with .Description }}<p class="section-description">{{ . }}</p>{{ end }}
+    {{ with .Content }}<div>{{ . }}</div>{{ end }}
   </div>
 </div>
 
 <div class="container">
+  {{/* For game-level pages (e.g. /arkham-lcg/), show all articles recursively.
+       For type-level pages (e.g. /arkham-lcg/scenarios/), show only direct
+       children. */}}
+  {{ $pages := .RegularPages }}
+  {{ if eq .RelPermalink .FirstSection.RelPermalink }}
+    {{/* We ARE a top-level game section — use recursive listing */}}
+    {{ $pages = where .RegularPagesRecursive "Draft" false }}
+  {{ end }}
+
+  {{ if gt (len $pages) 0 }}
   <div class="cards-grid">
-    {{ range .Pages }}
+    {{ range $pages }}
       {{ partial "card.html" . }}
     {{ end }}
   </div>
+  {{ else }}
+  <p class="empty-section">{{ i18n "no_articles_yet" }}</p>
+  {{ end }}
 
   {{ template "_internal/pagination.html" . }}
 </div>
