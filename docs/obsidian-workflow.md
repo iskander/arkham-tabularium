@@ -27,7 +27,7 @@ If attachment folder is wrong, pasted images will land outside the Page Bundle.
 ### 3. Enable the Templates core plugin
 
 Settings → Core plugins → **Templates** → enable.
-The template folder is already set to `.obsidian/templates/`.
+The template folder is already set to `templates/` (at the vault root).
 
 ---
 
@@ -116,6 +116,19 @@ it in the article:
     caption="Three cultists and a ghoul in the opening hand." >}}
 ```
 
+**Externally-hosted illustrations** — for banners, composite images, or
+anything that doesn't belong in a specific article's bundle, upload to
+the companion repo `arkham-tabularium-assets` and reference via `asset=`:
+
+```
+{{< figure asset="arkham-lcg/articles/c2-guardian/Guardian.jpg"
+    alt="Guardian class banner"
+    width="900" >}}
+```
+
+These also render as raw text in Obsidian's preview. The images are
+served via jsDelivr CDN — see `docs/images.md` for the full workflow.
+
 **Callouts** — Obsidian has its own `> [!note]` callout syntax which is
 incompatible with Hugo. Use Hugo's HTML callout divs instead:
 ```html
@@ -203,7 +216,7 @@ is your rendering preview. Run both in parallel while working on an article.
 
 ## Keeping Obsidian settings in sync across devices
 
-The `.obsidian/app.json` and `.obsidian/templates/` folder are committed
+The `.obsidian/app.json` file and `templates/` folder are committed
 to Git, so your settings and templates stay in sync across machines
 automatically when you pull.
 

@@ -1,6 +1,6 @@
 {{/*
   FIGURE SHORTCODE  (overrides Hugo's built-in figure)
-  Renders a responsive, optimised image from the page bundle.
+  Renders a responsive, optimised image — from one of three sources.
 
   Usage:
     {{< figure src="encounter-deck.jpg" alt="The encounter deck" >}}
@@ -8,37 +8,61 @@
     {{< figure src="map.jpg" alt="Location map" width="600" >}}
     {{< figure src="card.jpg" alt="Card image" float="right" >}}   ← float left | right
 
+    Externally-hosted (from the arkham-tabularium-assets repo via jsDelivr):
+    {{< figure asset="arkham-lcg/articles/c2-guardian/Guardian.jpg"
+               alt="Guardian class banner"
+               width="900" >}}
+
+    Ad-hoc external URL (any third-party image):
+    {{< figure src="https://example.com/image.jpg" alt="…" >}}
+
   Parameters:
-    src      — filename of the image in the page bundle (required)
-    alt      — alt text, already written in the article's language (required for accessibility)
+    src      — filename in the page bundle, OR a full external URL
+    asset    — path within the arkham-tabularium-assets repo; prepends
+               Site.Params.assets_cdn automatically (preferred over src=URL)
+    alt      — alt text, written in the article's language (required for a11y)
     caption  — optional caption, written in the article's language
     width    — max display width in px (default: 800)
-    float    — "left" or "right" to float beside text (default: none, full-width block)
+    float    — "left" or "right" to float beside text (default: none)
     link     — optional URL to wrap the image in a link
 
-  Hugo processes the image at build time:
-  - Converts to WebP
-  - Generates a 400 px srcset variant for mobile
-  - Strips EXIF metadata
-  - Adds width/height attributes to prevent layout shift
+  Resolution order:
+    1. If `asset` is supplied, build the URL from assets_cdn + asset.
+    2. Otherwise, look for `src` as a local file in the Page Bundle.
+    3. If it's not found in the bundle, treat `src` as an external URL.
 
-  Falls back gracefully if the image isn't found in the bundle
-  (e.g. if used outside a Page Bundle context).
+  Bundle images are processed at build time (WebP conversion, srcset,
+  dimension inference, lazy loading). External images (asset= or src=URL)
+  bypass processing and render as plain <img> tags.
 */}}
 
 {{ $src     := .Get "src" }}
+{{ $asset   := .Get "asset" }}
 {{ $alt     := .Get "alt" | default "" }}
 {{ $caption := .Get "caption" }}
 {{ $width   := .Get "width" | default 800 | int }}
 {{ $float   := .Get "float" }}
 {{ $link    := .Get "link" }}
 
+{{/* If asset= is provided, build the full CDN URL */}}
+{{ if $asset }}
+  {{ $base := site.Params.assets_cdn }}
+  {{ if not $base }}
+    {{ errorf "figure: `asset` param used but `assets_cdn` is not set in hugo.toml" }}
+  {{ end }}
+  {{ $src = printf "%s/%s" $base $asset }}
+{{ end }}
+
 {{ $floatClass := "" }}
 {{ if eq $float "left"  }}{{ $floatClass = "figure--float-left"  }}{{ end }}
 {{ if eq $float "right" }}{{ $floatClass = "figure--float-right" }}{{ end }}
 
 {{/* ── Image processing ──────────────────────────────────────── */}}
-{{ $img := .Page.Resources.GetMatch $src }}
+{{/* Only attempt Page Bundle lookup if src isn't already a full URL. */}}
+{{ $img := false }}
+{{ if and $src (not (or (hasPrefix $src "http://") (hasPrefix $src "https://"))) }}
+  {{ $img = .Page.Resources.GetMatch $src }}
+{{ end }}
 
 {{ if $img }}
 
@@ -69,10 +93,12 @@
 </figure>
 
 {{ else }}
-{{/* Fallback: image not in bundle — render a plain img tag with src as-is */}}
+{{/* External URL or unresolvable bundle reference — render a plain img tag.
+     referrerpolicy=no-referrer protects against CDNs that inspect Referer for
+     hotlink protection. jsDelivr doesn't require it, but it's cheap insurance. */}}
 <figure class="article-figure {{ $floatClass }}">
   {{ with $link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
-  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" style="max-width: {{ $width }}px;">
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" referrerpolicy="no-referrer" style="max-width: {{ $width }}px;">
   {{ with $link }}</a>{{ end }}
   {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>

@@ -1,6 +1,6 @@
 # Image Handling Guide
 
-## Two types of images, two strategies
+## Three types of images, three strategies
 
 ### 1. Card images — link to ArkhamDB
 
@@ -9,13 +9,49 @@ keeps them up to date, and redistributing them raises copyright questions.
 
 Use the `{{< card >}}` shortcode — it fetches and displays them automatically.
 
-### 2. Your own images — Page Bundles
+### 2. Screenshots and original images — Page Bundles
 
-Screenshots, photos, diagrams, maps, custom charts — anything you created or
-own goes in the article's Page Bundle folder alongside the Markdown files.
+Screenshots, photos, diagrams, maps, custom charts — anything you created that
+belongs with a single article goes in the article's Page Bundle folder
+alongside the Markdown files.
 
 Hugo processes them at build time: converts to WebP, generates srcset variants,
 strips EXIF, adds width/height to prevent layout shift.
+
+### 3. Illustrations, banners, and composite images — external assets repo
+
+Larger images that aren't individual cards (class banners, stylised composite
+card spreads, multi-image illustrations) are stored in a separate public repo:
+**`iskander/arkham-tabularium-assets`**, served via the jsDelivr CDN.
+
+Reasons for keeping them out of the main repo:
+
+- The main Hugo repo stays under GitHub's 1 GB soft limit
+- Build times stay fast (no image processing on every deploy)
+- Git history stays focused on text changes
+
+Access these images via the `{{< figure >}}` shortcode's `asset=` parameter:
+
+```
+{{< figure asset="arkham-lcg/articles/c2-guardian/Guardian.jpg"
+           alt="Guardian class banner — Chapter 2 Core"
+           width="900" >}}
+```
+
+The shortcode prepends `Site.Params.assets_cdn` from `hugo.toml` automatically,
+so article content never hard-codes the CDN URL. Migrating to a different CDN
+or pinning to a specific release tag becomes a one-line edit in `hugo.toml`.
+
+**Important trade-off:** external images bypass Hugo's build-time processing.
+No WebP conversion, no srcset, no automatic dimension inference. They're served
+as-is from the CDN. For most illustrations this is fine — the CDN is fast,
+jsDelivr handles caching — but you should optimise the image *before* uploading
+it to the assets repo (compress to reasonable dimensions, strip EXIF manually).
+
+**Naming convention:** lowercase, hyphen-separated, no spaces (same as the main
+repo). A few early files in the assets repo (`Vicious Blow.jpg`, etc.) predate
+this convention and use spaces; those work but should not be imitated for new
+uploads.
 
 ---
 

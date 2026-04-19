@@ -7,9 +7,9 @@ title = "Arkham Tabularium"
 [params]
   author = "Iskander"
   goatcounter = "arkhamt"   # ← your GoatCounter site code (e.g. "arkhamt" for arkhamt.goatcounter.com)
-  # Base URL for externally-hosted images served via jsDelivr from the
+# Base URL for externally-hosted images served via jsDelivr from the
   # arkham-tabularium-assets companion repo. Do not include a trailing slash.
-  assets_cdn = "https://cdn.jsdelivr.net/gh/iskander/arkham-tabularium-assets@main"
+  assets_cdn = "https://cdn.jsdelivr.net/gh/iskander/arkham-tabularium-assets@main"			  
 
 [taxonomies]
   tag = "tags"

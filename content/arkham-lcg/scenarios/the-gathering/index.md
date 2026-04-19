@@ -1,23 +1,22 @@
 ---
 title: "The Gathering: Where It All Begins"
 date: 2026-04-05
-draft: false
-description: "The first scenario in the Night of the Zealot cycle, and still one of the tightest introductions to AH:LCG's design language. A review."
-
-cycle: "Night of the Zealot"
+draft: true
+description: The first scenario in the Night of the Zealot cycle, and still one of the tightest introductions to AH:LCG's design language. A review.
+cycle: Night of the Zealot
 scenario_number: "1"
-difficulty: "standard"
+difficulty: standard
 standalone: true
-
 fun_factor: 8
 replayability: 6
 thematic_coherence: 9
 mechanical_design: 8
-
 investigators: []
-tags: ["scenario-review", "night-of-the-zealot", "core-set", "beginner-friendly"]
-
-# --- Discussion links ---
+tags:
+  - scenario-review
+  - night-of-the-zealot
+  - core-set
+  - beginner-friendly
 bgg_thread: ""
 reddit_thread: ""
 ---

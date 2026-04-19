@@ -67,12 +67,21 @@ at build time into WebP with a `srcset` for mobile.
 
 | Parameter | Default | Notes |
 |---|---|---|
-| `src` | — | Filename in the page bundle, required |
+| `src` | — | Filename in the page bundle, OR a full external URL |
+| `asset` | — | Path in the `arkham-tabularium-assets` repo; prepends `Site.Params.assets_cdn` |
 | `alt` | `""` | Alt text — write in the article's language |
 | `caption` | — | Optional caption — write in the article's language |
 | `width` | `800` | Max display width in px |
 | `float` | — | `left` or `right` to float beside text |
 | `link` | — | Optional URL to wrap the image |
+
+Use `asset=` for anything hosted in the companion assets repo — it's shorter,
+avoids hard-coding the CDN URL, and makes CDN migrations a one-line change in
+`hugo.toml`. Use `src=` with a full URL for ad-hoc third-party images. Use
+`src=` with a bare filename for local Page Bundle images (which get full Hugo
+image processing — WebP, srcset, dimension inference).
+
+See `docs/images.md` for the full three-pattern image strategy.
 
 **The `alt` and `caption` parameters carry the multilingual responsibility.**
 Since you write them directly in the article's `.md` file, they are naturally

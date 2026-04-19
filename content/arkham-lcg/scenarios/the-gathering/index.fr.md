@@ -1,23 +1,22 @@
 ---
 title: "La Réunion : Là où tout commence"
 date: 2026-04-05
-draft: false
-description: "Le premier scénario du cycle La Nuit des Zélateurs, et l'une des meilleures introductions au langage ludique d'AH:JdC. Une analyse."
-
-cycle: "La Nuit des Zélateurs"
+draft: true
+description: Le premier scénario du cycle La Nuit des Zélateurs, et l'une des meilleures introductions au langage ludique d'AH:JdC. Une analyse.
+cycle: La Nuit des Zélateurs
 scenario_number: "1"
-difficulty: "standard"
+difficulty: standard
 standalone: true
-
 fun_factor: 8
 replayability: 6
 thematic_coherence: 9
 mechanical_design: 8
-
 investigators: []
-tags: ["analyse-scenario", "nuit-des-zelateurs", "boite-de-base", "debutant"]
-
-# --- Discussion links ---
+tags:
+  - analyse-scenario
+  - nuit-des-zelateurs
+  - boite-de-base
+  - debutant
 bgg_thread: ""
 reddit_thread: ""
 ---

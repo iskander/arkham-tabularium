@@ -516,7 +516,7 @@ are already pre-configured in `.obsidian/app.json`:
   which Hugo understands natively
 - **Attachments in same folder** — pasted images land in the article's
   Page Bundle automatically
-- **Templates folder** — seven templates in `templates/` (at the vault root) mirror
+- **Templates folder** — five templates in `.obsidian/templates/` mirror
   the Hugo archetypes (Scenario Review, Deck Guide, Campaign Log,
   Investigator Analysis, Article)
 
