@@ -12,7 +12,7 @@ tags:
   - daniela-reyes
   - tommy-muldoon
 bgg_thread: https://boardgamegeek.com/thread/3685115/chapter-2-class-spotlight-guardian
-reddit_thread: ""
+reddit_thread: https://www.reddit.com/r/arkhamhorrorlcg/comments/1sqjjw3/arkham_tabularium_chapter_2_class_spotlight/
 ---
 
 {{< figure src="https://cdn.jsdelivr.net/gh/iskander/arkham-tabularium-assets@main/arkham-lcg/articles/c2-guardian/Guardian.jpg"
