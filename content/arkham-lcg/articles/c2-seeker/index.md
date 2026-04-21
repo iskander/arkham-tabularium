@@ -12,7 +12,7 @@ tags:
   - carolyn-fern
   - joe-diamond
 bgg_thread: https://boardgamegeek.com/thread/3687130/chapter-2-class-spotlight-seeker
-reddit_thread:
+reddit_thread: https://www.reddit.com/r/arkhamhorrorlcg/comments/1sriz7r/arkham_tabularium_chapter_2_class_spotlight_seeker/
 ---
 
 
