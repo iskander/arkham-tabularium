@@ -12,7 +12,7 @@ tags:
   - andré-patel
   - trish-scarborough
 bgg_thread: https://boardgamegeek.com/thread/3688142/chapter-2-class-spotlight-rogue
-reddit_thread: ""
+reddit_thread: https://www.reddit.com/r/arkhamhorrorlcg/comments/1sshrk4/arkham_tabularium_chapter_2_class_spotlight_rogue/
 ---
 
 
