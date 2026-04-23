@@ -38,7 +38,7 @@ A few things worth being upfront about.
 
 **This is not a power-level review.** The cards have just come out. I have not had enough table time with them to grade them with any rigor. Where a card's mechanical role is clear, it sometimes gets discussed; where its value is going to depend on play experience, the series stays out of it.
 
-**This is not a Chapter 1 comparison.** The Chapter 2evergreen pool is evaluated as an ensemble, on its own terms. Chapter 1 is occasionally referenced where a design choice only makes sense against that history — Rogue pivoting away from guns, for instance — but the point isn't "better or worse than Dunwich-era Seeker." It's "what does this class look like, as the foundation of Chapter 2?"
+**This is not a Chapter 1 comparison.** The Chapter 2 evergreen pool is evaluated as an ensemble, on its own terms. Chapter 1 is occasionally referenced where a design choice only makes sense against that history — Rogue pivoting away from guns, for instance — but the point isn't "better or worse than Dunwich-era Seeker." It's "what does this class look like, as the foundation of Chapter 2?"
 
 **This is not a deck-building guide.** I expect an explosion of decks in the coming days, besides those that have already been published.
 
@@ -55,5 +55,5 @@ If any of that sounds interesting, stick around.
 ---
 
 {{< center >}}
-[Introduction]({{< ref "arkham-lcg/articles/c2-introduction" >}}) | [Guardian]({{< ref "arkham-lcg/articles/c2-guardian" >}}) | [Seeker]({{< ref "arkham-lcg/articles/c2-seeker" >}}) | [Rogue]({{< ref "arkham-lcg/articles/c2-rogue" >}}) | Mystic | Survivor | Conclusion
+[Introduction]({{< ref "arkham-lcg/articles/c2-introduction" >}}) | [Guardian]({{< ref "arkham-lcg/articles/c2-guardian" >}}) | [Seeker]({{< ref "arkham-lcg/articles/c2-seeker" >}}) | [Rogue]({{< ref "arkham-lcg/articles/c2-rogue" >}}) | [Mystic]({{< ref "arkham-lcg/articles/c2-mystic" >}}) | Survivor | Conclusion
 {{< /center >}}
