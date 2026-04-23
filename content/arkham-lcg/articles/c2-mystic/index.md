@@ -12,7 +12,7 @@ tags:
   - dexter-drake
   - marie-lambeau
 bgg_thread: https://boardgamegeek.com/thread/3690153/chapter-2-class-spotlight-mystic
-reddit_thread: ""
+reddit_thread: https://www.reddit.com/r/arkhamhorrorlcg/comments/1stc1xh/arkham_tabularium_chapter_2_class_spotlight_mystic/
 ---
 
 
