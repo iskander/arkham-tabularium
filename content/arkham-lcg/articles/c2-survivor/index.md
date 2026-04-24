@@ -69,8 +69,6 @@ His investigator ability gives him an additional action during his turn that may
 
 His signature card, **Miguel's Knapsack**, (2, when play an event, either draw a card or play it at a connecting location) gives economy or the ultimate hit and run capabilities. His signature weakness, Feline Hybrid, is basically an Alien's xenomorph, both hunter and elusive, and resistant to most things one can throw at it, forcing Miguel or a teammate to come out in the open to deal with it.
 
-His deckbuilding is the most pointed constraint in the evergreen lineup: **pure Survivor 0-5 and Neutral cards only, with no secondary class access whatsoever.** Every other evergreen investigator patches gaps through cross-class splashing. Miguel doesn't. He's a declaration that the Survivor pool is deep enough to build from on its own terms.
-
 {{< figure src="https://cdn.jsdelivr.net/gh/iskander/arkham-tabularium-assets@main/arkham-lcg/articles/c2-survivor/decoy-trap.png"
     alt="Decoy Trap — Trap engine"
     float="left"
