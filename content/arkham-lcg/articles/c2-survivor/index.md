@@ -12,7 +12,7 @@ tags:
   - isabelle-barnes
   - miguel-de-la-cruz
 bgg_thread: https://boardgamegeek.com/thread/3693112/chapter-2-class-spotlight-survivor
-reddit_thread: ""
+reddit_thread: https://www.reddit.com/r/arkhamhorrorlcg/comments/1su8n4c/arkham_tabularium_chapter_2_class_spotlight/
 ---
 
 {{< figure src="https://cdn.jsdelivr.net/gh/iskander/arkham-tabularium-assets@main/arkham-lcg/articles/c2-survivor/Survivor.png"
