@@ -120,5 +120,5 @@ Open questions going forward are how the class's implicit design threads — Mis
 ---
 
 {{< center >}}
-[Introduction]({{< ref "arkham-lcg/articles/c2-introduction" >}}) | [Guardian]({{< ref "arkham-lcg/articles/c2-guardian" >}}) | [Seeker]({{< ref "arkham-lcg/articles/c2-seeker" >}}) | [Rogue]({{< ref "arkham-lcg/articles/c2-rogue" >}}) | [Mystic]({{< ref "arkham-lcg/articles/c2-mystic" >}}) | Survivor | Conclusion
+[Introduction]({{< ref "arkham-lcg/articles/c2-introduction" >}}) | [Guardian]({{< ref "arkham-lcg/articles/c2-guardian" >}}) | [Seeker]({{< ref "arkham-lcg/articles/c2-seeker" >}}) | [Rogue]({{< ref "arkham-lcg/articles/c2-rogue" >}}) | [Mystic]({{< ref "arkham-lcg/articles/c2-mystic" >}}) | [Survivor]({{< ref "arkham-lcg/articles/c2-survivor" >}}) | Conclusion
 {{< /center >}}
